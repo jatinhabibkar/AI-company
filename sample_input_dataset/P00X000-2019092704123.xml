@@ -1,0 +1,26 @@
+<annotation>
+	<folder>sample_input_dataset</folder>
+	<filename>P00X000-2019092704123.jpg</filename>
+	<path>/home/user/test</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>576</width>
+		<height>600</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>grinder</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>75</xmin>
+			<ymin>147</ymin>
+			<xmax>224</xmax>
+			<ymax>451</ymax>
+		</bndbox>
+	</object>
+</annotation>
