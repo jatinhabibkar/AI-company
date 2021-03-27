@@ -5,7 +5,7 @@
 ## ener in project by this commands
 ` cd project `
 
-
+I have useded nosql database mongodb as it is schema less and as images contain more then one object it is easy to store all name and coordinate in the same document location without join Operation
 ## install mongo also assuming know how to install mongo on linux
 `sudo apt-get install -y mongodb-org`
 
