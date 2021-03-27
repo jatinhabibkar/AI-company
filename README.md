@@ -1,6 +1,6 @@
 ## AI-company
 
-## tested on linux ubuntu 20.10 x86_64
+## tested on linux ubuntu 20.10 x86_64 Python version 3.8
 
 ## ener in project by this commands
 ` cd project `
