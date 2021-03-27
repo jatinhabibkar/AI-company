@@ -5,6 +5,17 @@ import os
 import pprint
 DIR="static/"
 
+# database
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017/testInv")
+
+db=client.get_database("testInv")
+
+collection =db.get_collection("items")
+#database
+
+
 # cv2 variables
 font = cv2.FONT_HERSHEY_SIMPLEX
   
@@ -74,6 +85,8 @@ class Process():
         todb["obj"]=[]
         todb["timemmddyy"]=tm
         todb["timstamp"]=int(exacttime)
+        todb["imagename"]=fileimg
+        
 
         for ob in objects:
             name=ob.find('name').get_text()
@@ -90,12 +103,26 @@ class Process():
             }
             todb["obj"].append(data)
             Process.plotkar(data,dst)
+        
+        # database work
+        todb["objlen"]=len(todb["obj"]) +1
+        response=collection.insert_one(todb)
+        last_inserted_id=response.inserted_id
+        # print("last inserted id : {}".format(last_inserted_id))
+        #send data
+        todb["data_id"]=last_inserted_id
+        
         pprint.pprint(todb)
         return todb
 
-    def getDatadb(start_time,end_time):
-        
-
-        return 
+    def getDatafromdb(self,start_time,end_time):
+        document=collection.find_one()
+        cursor=collection.find()
+        result=[]
+        for each_document in cursor:
+            if each_document["timstamp"]>start_time and each_document["timstamp"]<end_time: 
+                print(each_document)
+                result.append(each_document)
+        return result
 
     

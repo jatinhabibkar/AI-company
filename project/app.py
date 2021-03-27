@@ -57,12 +57,11 @@ def dataDisplaysuccess():
     if request.method == 'POST' and request.form["date-start"] and request.form["date-end"]:
         start_date=request.form["date-start"]
         end_date=request.form["date-end"]
-        somedata={"jatin":"jatin"}
 
         sd_tm=time.mktime(datetime.datetime.strptime(start_date,"%Y-%m-%d").timetuple())
         ed_tm=time.mktime(datetime.datetime.strptime(end_date,"%Y-%m-%d").timetuple())
-        ps.getDatadb(sd_tm,ed_tm)        
-        return render_template("dataDisplay.html",somedata=somedata)
+        result = ps.getDatafromdb(sd_tm,ed_tm)        
+        return render_template("dataDisplay.html",somedata=result)
     else:
         return render_template("dataDisplay.html",error=error)
 

@@ -51,8 +51,43 @@
         {% endif %}
 
         {% if somedata is defined %}
-        <h5>{{somedata}}</h5>
+        <table>
+            <thead>
+                <th>image_name</th>
+                <th>timestamp</th>
+                <th>object_name</th>
+                <th>x_min</th>
+                <th>y_min</th>
+                <th>x_max</th>
+                <th>y_max</th>
+            </thead>    
+                <tbody>
+                
+                    {% for i in range(0,somedata | length)%}
+                        
+                    <tr>
+                        <td rowspan={{ somedata[i].objlen }} >{{somedata[i]['imagename']}}</td>
+                        
+                        <!-- <td rowspan="5" >{{somedata[i]['timemmddyy']}}</td> -->
+                        <td rowspan={{ somedata[i].objlen }}>{{somedata[i]['timemmddyy']}}</td>
+                        {% for j in somedata[i]['obj']%}
+                            
+                            <tr>
+                                <td>{{j.name}}</td>
+                                <td>{{j.xmin}}</td>
+                                <td>{{j.xmax}}</td>
+                                <td>{{j.ymin}}</td>
+                                <td>{{j.ymax}}</td>
+                            </tr>
+                        {% endfor %}    
+                    </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+
         {% endif %}
+
+
     </div>
 </body>
 
