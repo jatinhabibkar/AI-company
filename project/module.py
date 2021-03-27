@@ -112,7 +112,7 @@ class Process():
         #send data
         todb["data_id"]=last_inserted_id
         
-        pprint.pprint(todb)
+        # pprint.pprint(todb)
         return todb
 
     def getDatafromdb(self,start_time,end_time):
@@ -121,7 +121,7 @@ class Process():
         result=[]
         for each_document in cursor:
             if each_document["timstamp"]>start_time and each_document["timstamp"]<end_time: 
-                print(each_document)
+                # print(each_document)
                 result.append(each_document)
         return result
 
