@@ -39,7 +39,7 @@
             <label for="start">End date:</label>
             <input type="date" id="end" name="date-end">
 
-            <button class="btn waves-effect right waves-light" type="submit" name="action">Submit
+            <button class="btn waves-effect right waves-light" type="submit" name="action">Show
                 <i class="material-icons right">send</i>
             </button>
 
@@ -66,13 +66,12 @@
                     {% for i in range(0,somedata | length)%}
                         
                     <tr>
-                        <td rowspan={{ somedata[i].objlen }} >{{somedata[i]['imagename']}}</td>
-                        
-                        <!-- <td rowspan="5" >{{somedata[i]['timemmddyy']}}</td> -->
-                        <td rowspan={{ somedata[i].objlen }}>{{somedata[i]['timemmddyy']}}</td>
+
                         {% for j in somedata[i]['obj']%}
                             
                             <tr>
+                                <td>{{somedata[i]['imagename']}}</td>
+                                <td>{{somedata[i]['timemmddyy']}}</td>
                                 <td>{{j.name}}</td>
                                 <td>{{j.xmin}}</td>
                                 <td>{{j.xmax}}</td>
@@ -84,6 +83,8 @@
                     {% endfor %}
             </tbody>
         </table>
+        
+        <button onclick="exportTableToCSV('download.csv')">Export Table To CSV File</button>
 
         {% endif %}
 
@@ -93,6 +94,49 @@
 
 
 <script>
+
+function downloadCSV(csv, filename) {
+    var csvFile;
+    var downloadLink;
+
+    // CSV file
+    csvFile = new Blob([csv], {type: "text/csv"});
+
+    // Download link
+    downloadLink = document.createElement("a");
+
+    // File name
+    downloadLink.download = filename;
+
+    // Create a link to the file
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+
+    // Hide download link
+    downloadLink.style.display = "none";
+
+    // Add the link to DOM
+    document.body.appendChild(downloadLink);
+
+    // Click download link
+    downloadLink.click();
+}
+
+function exportTableToCSV(filename) {
+    var csv = [];
+    var rows = document.querySelectorAll("table tr");
+    
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+        
+        for (var j = 0; j < cols.length; j++) 
+            row.push(cols[j].innerText);
+        
+        csv.push(row.join(","));        
+    }
+
+    // Download CSV file
+    downloadCSV(csv.join("\n"), filename);
+}
 
 </script>
 
