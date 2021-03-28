@@ -18,16 +18,16 @@ collection =db.get_collection("items")
 
 # cv2 variables
 font = cv2.FONT_HERSHEY_SIMPLEX
-  
+
 # org
 org = (50, 50)
-  
+
 # fontScale
 fontScale = 1
-   
+
 # RED color in BGR
 color = (0, 0, 255)
-  
+
 # Line thickness of 2 px
 thickness = 2
 # cv2 variables
@@ -41,27 +41,26 @@ class Process():
         soup = BeautifulSoup(contents,'xml')
         objects=soup.find_all('object')
         return objects
-    
+
     def read_image(self,fileimg):
         img=cv2.imread(fileimg)
     def checktemp():
         if os.path.exists(DIR):
             pass
         else:
-            os.mkdir(DIR)        
+            os.mkdir(DIR)
 
     def plotkar(data,filename):
         img=cv2.imread(filename)
         cv2.rectangle(img,
                     (data["xmin"], data["ymin"]),
-                    (data["xmax"],data["ymax"]), 
+                    (data["xmax"],data["ymax"]),
                     (0,0,255),2)
         cv2.putText(img,data["name"],(data["xmin"],data["ymin"]),font,
                     fontScale, color, thickness, cv2.LINE_AA)
         cv2.imwrite(filename,img)
-    
+
     def get_data_xml(self,objects,fileimg,fn,tm,exacttime):
-        
         Process.checktemp()
 
         dirhai=os.path.splitext(DIR+fileimg)[0]+"/"
@@ -72,10 +71,8 @@ class Process():
         else:
             os.mkdir(dirhai)
 
-        
         # output file
         dst=dirhai+"output.jpg"
-        
         shutil.copy(fileimg,dst)
         shutil.copy(fileimg, dirhai+fileimg)
         shutil.copy(fn,dirhai+fn)
@@ -86,7 +83,6 @@ class Process():
         todb["timemmddyy"]=tm
         todb["timstamp"]=int(exacttime)
         todb["imagename"]=fileimg
-        
 
         for ob in objects:
             name=ob.find('name').get_text()
@@ -103,7 +99,6 @@ class Process():
             }
             todb["obj"].append(data)
             Process.plotkar(data,dst)
-        
         # database work
         todb["objlen"]=len(todb["obj"]) +1
         response=collection.insert_one(todb)
@@ -111,7 +106,6 @@ class Process():
         # print("last inserted id : {}".format(last_inserted_id))
         #send data
         todb["data_id"]=last_inserted_id
-        
         # pprint.pprint(todb)
         return todb
 
@@ -124,5 +118,3 @@ class Process():
                 # print(each_document)
                 result.append(each_document)
         return result
-
-    

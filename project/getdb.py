@@ -11,6 +11,6 @@ document=collection.find_one()
 cursor=collection.find()
 
 for each_documnet in cursor:
-    
+
     print(each_documnet["timstamp"])
 

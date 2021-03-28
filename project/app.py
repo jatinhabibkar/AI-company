@@ -25,18 +25,18 @@ def success():
     if request.method == 'POST':
 
 
-        im = request.files['img']  
+        im = request.files['img']
         im.save(im.filename)
 
         fn =request.files['xml']
-        fn.save(fn.filename)  
+        fn.save(fn.filename)
 
         exacttime=time.time()
 
         localtime = time.asctime( time.localtime(exacttime))
 
         # magic
-        
+
         data=ps.get_data_xml(ps.read_xml_obj(fn.filename), im.filename,fn.filename,localtime,exacttime)
         # magic
 
@@ -60,7 +60,7 @@ def dataDisplaysuccess():
 
         sd_tm=time.mktime(datetime.datetime.strptime(start_date,"%Y-%m-%d").timetuple())
         ed_tm=time.mktime(datetime.datetime.strptime(end_date,"%Y-%m-%d").timetuple())
-        result = ps.getDatafromdb(sd_tm,ed_tm)        
+        result = ps.getDatafromdb(sd_tm,ed_tm)
         return render_template("dataDisplay.html",somedata=result)
     else:
         return render_template("dataDisplay.html",error=error)
