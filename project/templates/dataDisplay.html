@@ -70,7 +70,7 @@
                         {% for j in somedata[i]['obj']%}
                             
                             <tr>
-                                <td>{{somedata[i]['imagename']}}</td>
+                                <td><a href="./{{somedata[i].proc_img}}">{{somedata[i]['imagename']}} </a></td>
                                 <td>{{somedata[i]['timemmddyy']}}</td>
                                 <td>{{j.name}}</td>
                                 <td>{{j.xmin}}</td>
