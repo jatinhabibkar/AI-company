@@ -47,11 +47,23 @@ class DataList(APIView):
     parser_classes = (MultiPartParser, FormParser)
     def post(self,request):
         try:
+            allthings=[]
             dateStart = request.data.get('dateStart')
             dateEnd =  request.data.get('dateEnd')
+            # filter
             d=Data.objects.filter(timestamp__range=[dateStart, dateEnd])
+            if len(d)==0:
+                allitems = json.loads(serialize('json',d))
+                return Response({'data':allitems})
+            # report
+            for i in d.values():
+                allthings +=i.get('object_detected').split(",")
+            head=['occurance']
+            folder_dir= './media/allreports/'+datetime.datetime.now().strftime("%Y-%m-%d_%I-%M-%S_%p")+'.csv'
+            pd.Series(allthings).value_counts().to_csv(folder_dir,header=head,index_label='threat')
+            
             allitems = json.loads(serialize('json',d))
-            return Response({'data':allitems})
+            return Response({'data':allitems,'report':folder_dir})
 
         except Exception as e:
             print(e)

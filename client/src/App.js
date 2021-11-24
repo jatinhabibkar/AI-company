@@ -9,9 +9,9 @@ const App = () => {
   
 
   const [loading,setloading]= useState(false)
+  const [reportlink,setreport]=useState(null)
   const [data,setdata]=useState(null)
   const [file,setfile]=useState({
-    url:'/upload',
     file: null
   })
   const [mydates,setdates] = useState({
@@ -38,10 +38,11 @@ const App = () => {
         "Content-Type": "text/json",
       },
     }
-    axios.post('/data',formData,config).then((response) => {
+    axios.post(process.env.REACT_APP_BACKEND+'data',formData,config).then((response) => {
       console.log(JSON.stringify(response));
       setdata(response.data.data)
-      console.log(data);
+      if(response.data.report)
+        setreport(process.env.REACT_APP_BACKEND+response.data.report)
 
     }).catch((error) => {
       console.log(error);
@@ -67,7 +68,7 @@ const App = () => {
         "Content-Type": "multipart/form-data",
       },
     }
-    axios.post(file.url,formData,config).then((response) => {
+    axios.post(process.env.REACT_APP_BACKEND+'upload',formData,config).then((response) => {
       console.log(JSON.stringify(response.data));
       M.toast({'html':"file uploaded"})
     }).catch((error) => {
@@ -102,14 +103,21 @@ const App = () => {
         </form>
         <br />
         <form >
-          <div className="container left" style={{display:"flex"}}>
+          <div className="container" >
                       
                       <label htmlFor="start" className="left">Start date:</label>
                       <input type="date" id="start" name="dateStart" className="browser-default left"  onChange={(e)=>{setdates({ ...mydates, [e.target.name]: e.target.value })}} />
                       <label htmlFor="start" className="left">End date:</label>
                       <input type="date" id="end" name="dateEnd" className="browser-default left"  onChange={(e)=>{setdates({ ...mydates, [e.target.name]: e.target.value })}} />
 
-                  <button className="btn waves-effect right waves-light left" type="submit" name="action" onClick={(e)=>{submitdate(e)}}>Show</button>
+                  <button className="btn" type="submit" name="action" onClick={(e)=>{submitdate(e)}}>Show</button>
+                  
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  {reportlink && <a className='btn' href={reportlink}>download report</a>}
+                  
           </div>
         </form>
         {data &&
@@ -129,12 +137,11 @@ const App = () => {
                         <td>{item.fields.image_name}</td>
                         <td>{item.fields.object_detected}</td>
                         <td >
-                          <img className='responsive-img' style={{height:"200px"}} src={process.env.REACT_APP_BACKEND_MEDIA+item.fields.image_name} alt="img" />
+                          <img className='responsive-img' style={{height:"200px"}} src={process.env.REACT_APP_BACKEND+'media/'+item.fields.image_name} alt="img" />
                         </td>  
                       </tr>)
                   })
-                ):(<h1>No data found</h1>)}
-                                                   
+                ):( <h1 className='center'>No data found</h1>)}              
             </tbody>
             
             </table> 
