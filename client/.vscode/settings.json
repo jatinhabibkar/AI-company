@@ -1,0 +1,9 @@
+{   "editor.wordWrap": "on",
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "files.associations": {
+        "*.jsx": "javascriptreact"
+    }
+    
+}
