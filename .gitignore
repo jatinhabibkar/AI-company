@@ -1,6 +1,8 @@
 
 # dependencies
-client/node_modules
+backend/client/node_modules
+backend/client/build
+
 /.pnp
 .pnp.js
 backend/venv

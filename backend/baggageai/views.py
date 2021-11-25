@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework import  status
+from django.http import HttpResponseRedirect
 from .serializers import FileSerializer, DataSerializer
 from django.core.serializers import serialize
 from .models import Data
@@ -68,8 +69,9 @@ class DataList(APIView):
         except Exception as e:
             print(e)
             return Response({'data':"something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
+    
     def get(self,request):
-        return Response({"data":"api"})
+        return HttpResponseRedirect("https://documenter.getpostman.com/view/5938078/UVJZpJwa")
         
         
 

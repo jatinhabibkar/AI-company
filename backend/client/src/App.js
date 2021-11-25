@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState} from "react";
 import axios  from 'axios';
-import M from "materialize-css/dist/js/materialize.min.js";
+import M from "materialize-css/dist/js/materialize.min";
 import { Loading } from './Loading';
 
 const App = () => {
@@ -83,7 +83,7 @@ const App = () => {
       <span className="myHeader">{loading && <Loading/> }
       
       
-      <h1>BaggageAI</h1> </span>
+      <h1>AI company</h1> </span>
      
         <form action="">
             <div className="file-field input-field">
