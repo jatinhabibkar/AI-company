@@ -24,7 +24,9 @@ I have useded sqllite3 database for storing data Django-rest for server side and
 `&& python manage.py makemigrations \`<br>
 `&& python manage.py migrate \`<br>
 `&& python manage.py runserver \ `<br>
-`&& server running on http://localhost:8000/`
+
+
+#### server running on http://localhost:8000/
 
 ## Run the React app
 `cd backend/client/ \`<br>
@@ -32,4 +34,4 @@ I have useded sqllite3 database for storing data Django-rest for server side and
 `&& npm run prod`
 
 ## App running on 
-`http://localhost:3000/`
+Http://localhost:3000/
