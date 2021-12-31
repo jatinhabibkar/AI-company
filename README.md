@@ -7,6 +7,13 @@ I have useded sqllite3 database for storing data Django-rest for server side and
 ## api documentations
 [Api documentation link](https://documenter.getpostman.com/view/5938078/UVJZpJwa)
 
+# docker installed
+## docker 
+`docker-compose up --build` 
+## App running on 
+http://localhost:3000/
+
+# docker not installed
 ## backend
 `cd backend`<br>
 `python3 -m venv venv`<br>
@@ -34,4 +41,12 @@ I have useded sqllite3 database for storing data Django-rest for server side and
 `&& npm run prod`
 
 ## App running on 
-Http://localhost:3000/
+http://localhost:3000/
+
+
+# Website
+#### Index page to upload file 
+![index_page](./images/index.png)
+
+#### Filter data by dates and report creation
+![filter_page](./images/sort.png)
