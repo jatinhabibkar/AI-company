@@ -2,7 +2,7 @@
 
 ## tested on linux ubuntu Python3
 
-I have useded sqllite3 database for storing data Django-rest for server side and react for front-end
+I have used sqllite3 database for storing data Django-rest for server side and react for front-end
 
 ## api documentations
 [Api documentation link](https://documenter.getpostman.com/view/5938078/UVJZpJwa)
