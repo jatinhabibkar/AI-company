@@ -14,16 +14,7 @@ I have used sqllite3 database for storing data Django-rest for server side and r
 http://localhost:3000/
 
 # docker not installed
-## backend
-`cd backend`<br>
-`python3 -m venv venv`<br>
-`source venv/bin/activate`<br>
-`pip install -r requirements.txt`<br>
-`python manage.py makemigrations`<br>
-`python manage.py migrate`<br>
-`python manage.py runserver`<br>
-`server running on http://localhost:8000/`
-#### or copy paste this 
+
 `cd backend \`<br>
 `&& python3 -m venv venv \`<br>
 `&& source venv/bin/activate \`<br>
