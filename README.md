@@ -26,7 +26,7 @@ I have useded sqllite3 database for storing data Django-rest for server side and
 `&& python manage.py runserver \ `<br>
 `&& server running on http://localhost:8000/`
 
-## Run the React app
+## Run the React app on new terminal
 `cd backend/client/ \`<br>
 `&& npm install -g serve \`<br>
 `&& npm run prod`
